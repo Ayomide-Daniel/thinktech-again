@@ -26,6 +26,16 @@
             <h4 class="postcard-tag">{{ trend.tag }}</h4>
           </nuxt-link>
         </div>
+        <div>
+          <div class="postcard-author-div" @click="setAuthor()">
+            <img
+              :src="article.author.image_url"
+              :alt="'' + article.author.name"
+              class="postcard-author-img"
+            />
+            <h5 class="post-author">{{ trend.author.name }}</h5>
+          </div>
+        </div>
         <div class="mb-3">
           <nuxt-link
             class="post-title"
@@ -36,16 +46,6 @@
           >
             {{ trend.title }}
           </nuxt-link>
-        </div>
-        <div>
-          <div class="postcard-author-div" @click="setAuthor()">
-            <img
-              :src="article.author.image_url"
-              :alt="'' + article.author.name"
-              class="postcard-author-img"
-            />
-            <h5 class="post-author">{{ trend.author.name }}</h5>
-          </div>
         </div>
         <div class="postcard-mini" v-html="content[0]"></div>
       </div>

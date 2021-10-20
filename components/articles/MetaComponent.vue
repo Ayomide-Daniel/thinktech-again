@@ -4,22 +4,25 @@
       <div class="author-img-div">
         <img
           v-if="author != null && author.image_url"
-          :src="$asset('author_images/' + author.image_url)"
+          :src="author.image_url"
           :alt="author.name"
         />
         <VSkeletonLoader v-else type="avatar" class="loader" />
         <p class="author-created">
-          <i class="bi bi-calendar-event"></i> {{ author.relative_time }}
+          <i class="bi bi-calendar-event"></i> {{ author.relative_at }}
         </p>
       </div>
       <div class="author-content">
-        <h3>{{ author.name }}</h3>
+        <h3 v-if="author.name">{{ author.name }}</h3>
+        <VSkeletonLoader v-else type="heading" class="loader" />
         <p v-if="author.bio">
+          {{ author.bio }}
+        </p>
+        <VSkeletonLoader v-else type="paragraph" class="loader" />
+        <p v-if="author.location">
           <i class="bi bi-pin"></i> {{ author.location }}Lagos, Ikeja
         </p>
         <VSkeletonLoader v-else type="heading" class="loader" />
-        <p v-if="author.bio"></p>
-        <VSkeletonLoader v-else type="paragraph" class="loader" />
       </div>
     </div>
     <div v-else class="data-meta">
@@ -77,8 +80,8 @@ export default {
   border-radius: 1rem;
 }
 img {
-  width: 125px;
-  height: 125px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   object-fit: cover;
   display: block;

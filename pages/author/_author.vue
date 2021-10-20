@@ -18,7 +18,7 @@ export default {
     }
   },
   mounted() {
-    if (this.author.length <= 0) {
+    if (Object.keys(this.author).length <= 0) {
       return this.setupPage()
     }
   },

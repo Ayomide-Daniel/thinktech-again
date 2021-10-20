@@ -67,7 +67,7 @@ export default {
       return this.fetchPosts()
     }
     if (this.$route.name === 'author-author') {
-      if (this.author.length > 0) {
+      if (Object.keys(this.author).length > 0) {
         return this.setupAuthorArticles()
       }
     }
