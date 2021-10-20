@@ -213,6 +213,9 @@ export default {
 }
 </script>
 <style scoped>
+#post{
+  overflow-wrap: break-word;
+}
 .post-article .figure-gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

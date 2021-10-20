@@ -5,7 +5,7 @@
         <nuxt-link
           :to="{
             name: 'title',
-            params: { title: trend.meta.title_link },
+            params: { title: trend.meta.title_link }
           }"
         >
           <img
@@ -20,7 +20,7 @@
           <nuxt-link
             :to="{
               name: 'tag-tag',
-              params: { tag: trend.tag },
+              params: { tag: trend.tag }
             }"
           >
             <h4 class="postcard-tag">{{ trend.tag }}</h4>
@@ -31,7 +31,7 @@
             class="post-title"
             :to="{
               name: 'title',
-              params: { title: trend.meta.title_link },
+              params: { title: trend.meta.title_link }
             }"
           >
             {{ trend.title }}
@@ -45,7 +45,7 @@
             "
           >
             <img
-              :src="article.author.image"
+              :src="article.author.image_url"
               :alt="'' + article.author.name"
               class="postcard-author-img"
             />
@@ -93,8 +93,8 @@ export default {
         }
       })
       return url
-    },
-  },
+    }
+  }
 }
 </script>
 
