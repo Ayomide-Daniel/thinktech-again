@@ -3,13 +3,13 @@
     <div v-if="$route.name == 'author-author'" class="data-meta">
       <div class="author-img-div">
         <img
-          v-if="author != null && author.image"
-          :src="$asset('author_images/' + author.image)"
+          v-if="author != null && author.image_url"
+          :src="$asset('author_images/' + author.image_url)"
           :alt="author.name"
         />
         <VSkeletonLoader v-else type="avatar" class="loader" />
         <p class="author-created">
-          <i class="bi bi-clock"></i> {{ author.relative_time }}
+          <i class="bi bi-calendar-event"></i> {{ author.relative_time }}
         </p>
       </div>
       <div class="author-content">
@@ -61,8 +61,10 @@ export default {
     }
   },
   mounted() {
-    if (this.author.length > 0) {
-      return (this.loading = false)
+    if (this.$route.name === 'author-author') {
+      if (this.author.length > 0) {
+        return (this.loading = false)
+      }
     }
   }
 }
