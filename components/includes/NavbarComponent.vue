@@ -35,12 +35,22 @@
                 class="app-title lg-app-title"
               />
             </nuxt-link>
-            <div class="navbar-links">
+            <!-- <div class="navbar-links">
               <nuxt-link :to="{ name: 'index' }" exact>Home</nuxt-link>
-            </div>
+            </div> -->
             <div class="navbar-tools">
-              <nuxt-link :to="{ name: 'index' }">Sign in</nuxt-link>
-              <nuxt-link :to="{ name: 'index' }"> Subscribe</nuxt-link>
+              <a
+                href="https://authors.thinktech.ng/create-account"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Become an author
+              </a>
+              <a
+                href="https://authors.thinktech.ng/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Resume writing
+              </a>
               <button v-if="!dark" v-ripple @click="darkThemeSwitch">
                 <i class="fas fa-moon"></i>
               </button>
@@ -73,15 +83,21 @@
             <div class="aside-nav-content nav-container">
               <div class="navbar-links">
                 <nuxt-link :to="{ name: 'index' }" exact>Home</nuxt-link>
-                <nuxt-link :to="{ name: 'index' }">Features</nuxt-link>
-                <nuxt-link :to="{ name: 'about' }">Changelog</nuxt-link>
-                <nuxt-link :to="{ name: 'about' }">Support</nuxt-link>
-                <nuxt-link :to="{ name: 'about' }">Get theme</nuxt-link>
               </div>
               <br />
               <div class="navbar-tools">
-                <nuxt-link :to="{ name: 'index' }">Sign in</nuxt-link>
-                <nuxt-link :to="{ name: 'index' }">Subscribe</nuxt-link>
+                <a
+                  href="https://authors.thinktech.ng/create-account"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Become an author
+                </a>
+                <a
+                  href="https://authors.thinktech.ng/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Resume writing
+                </a>
                 <button v-if="!dark" v-ripple @click="darkThemeSwitch">
                   <i class="fas fa-moon"></i>
                 </button>
@@ -140,13 +156,13 @@ export default {
   data() {
     return {
       showAsideNav: false,
-      showSearchBar: false,
+      showSearchBar: false
     }
   },
   computed: {
     dark() {
       return this.$store.state.theme.dark
-    },
+    }
   },
   mounted() {
     this.checkDarkMode()
@@ -180,8 +196,8 @@ export default {
     },
     showSearch() {
       this.showSearchBar = true
-    },
-  },
+    }
+  }
 }
 </script>
 
