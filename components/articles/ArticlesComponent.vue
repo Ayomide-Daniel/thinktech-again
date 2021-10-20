@@ -49,7 +49,6 @@ export default {
     return {
       loading: true,
       articles: []
-      // author: {}
     }
   },
   computed: {
@@ -59,7 +58,7 @@ export default {
   },
   watch: {
     author() {
-      return this.setupAuthorArticles()
+      return this.setupAuthorArticles('author')
     }
   },
   mounted() {
@@ -68,7 +67,10 @@ export default {
     }
     if (this.$route.name === 'author-author') {
       if (Object.keys(this.author).length > 0) {
-        return this.setupAuthorArticles()
+        return this.setupAuthorArticles('id')
+      }
+      if (this.author.articles.length > 0) {
+        return this.setupAuthorArticles('author')
       }
     }
     if (this.$route.name === 'tag-tag') {
@@ -76,9 +78,18 @@ export default {
     }
   },
   methods: {
-    setupAuthorArticles() {
+    setupAuthorArticles(type) {
+      if (type === 'id') {
+        return Article.getAuthor({ filter_by: 'id', q: this.author.id }).then(
+          (res) => {
+            this.articles = res.data.data
+            this.loading = false
+          }
+        )
+      }
       this.articles = this.author.articles
       this.loading = false
+      return true
     },
     fetchPosts() {
       return Article.getArticles()
