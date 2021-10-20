@@ -43,37 +43,28 @@
 </template>
 
 <script>
-import Account from '~/assets/js/api/Account'
 export default {
   name: 'MetaComponent',
   data() {
     return {
-      loading: true,
-      author: '',
+      loading: true
+    }
+  },
+  computed: {
+    author() {
+      return this.$store.state.author.author
+    }
+  },
+  watch: {
+    author() {
+      return (this.loading = false)
     }
   },
   mounted() {
-    if (this.$route.name === 'author-author') {
-      this.setAuthor()
+    if (this.author.length > 0) {
+      return (this.loading = false)
     }
-  },
-  methods: {
-    async setAuthor() {
-      await this.getauthor()
-      if (!['', null, undefined, {}].includes(this.author)) {
-        return (this.loading = false)
-      }
-      return Account.getAuthorByName(this.$route.params.author).then((res) => {
-        this.$store.commit('author/setAuthor', res.data.data)
-        this.author = res.data.data
-        this.$root.$emit('authorUpdated')
-        this.loading = false
-      })
-    },
-    getauthor() {
-      return (this.author = this.$store.state.author.author)
-    },
-  },
+  }
 }
 </script>
 <style scoped>

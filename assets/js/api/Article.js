@@ -10,9 +10,9 @@ export default {
     await Csrf.getCookie()
     return Api.get('/articles')
   },
-  async getAuthor(id) {
+  async getAuthor(data) {
     await Csrf.getCookie()
-    return Api.get('/articles/author/' + id)
+    return Api.get('/articles/author', data)
   },
   async getTag(tag) {
     await Csrf.getCookie()

@@ -43,57 +43,50 @@ import Article from '~/assets/js/api/Article'
 export default {
   name: 'ArticlesComponent',
   components: {
-    SingleArticleComponent,
+    SingleArticleComponent
   },
   data() {
     return {
       loading: true,
-      articles: [],
-      author: {},
+      articles: []
+      // author: {}
+    }
+  },
+  computed: {
+    author() {
+      return this.$store.state.author.author
+    }
+  },
+  watch: {
+    author() {
+      return this.setupAuthorArticles()
     }
   },
   mounted() {
-    this.$root.$on('setSimilarArticles', (data) => {
-      this.articles = data
-      this.loading = false
-    })
-    this.$root.$on('authorUpdated', () => {
-      this.fetchAuthor()
-    })
-    if (this.$route.name === 'author-author') {
-      return this.fetchAuthor()
-    }
     if (this.$route.name === 'index') {
-      return this.fetchPosts().then(() => {
-        this.loading = false
-      })
+      return this.fetchPosts()
+    }
+    if (this.$route.name === 'author-author') {
+      if (this.author.length > 0) {
+        return this.setupAuthorArticles()
+      }
     }
     if (this.$route.name === 'tag-tag') {
       return this.fetchTag()
     }
   },
   methods: {
+    setupAuthorArticles() {
+      this.articles = this.author.articles
+      this.loading = false
+    },
     fetchPosts() {
       return Article.getArticles()
         .then((res) => {
           this.articles = res.data.data
+          this.loading = false
         })
         .catch(() => {})
-    },
-    async fetchAuthor() {
-      // this.loading = true
-      await this.getAuthor()
-      if (!['', null, undefined, {}].includes(this.author)) {
-        Article.getAuthor(this.author.id)
-          .then((res) => {
-            this.articles = res.data.data
-            return (this.loading = false)
-          })
-          .catch(() => {})
-      }
-    },
-    getAuthor() {
-      return (this.author = this.$store.state.author.author)
     },
     fetchTag() {
       return Article.getTag(this.$route.params.tag)
@@ -102,8 +95,8 @@ export default {
           this.loading = false
         })
         .catch(() => {})
-    },
-  },
+    }
+  }
 }
 </script>
 

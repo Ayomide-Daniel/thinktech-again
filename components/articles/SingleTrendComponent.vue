@@ -38,12 +38,7 @@
           </nuxt-link>
         </div>
         <div>
-          <div
-            class="postcard-author-div"
-            @click="
-              setAuthor(trend.author, `/author/${trend.meta.author_link}`)
-            "
-          >
+          <div class="postcard-author-div" @click="setAuthor()">
             <img
               :src="article.author.image_url"
               :alt="'' + article.author.name"
@@ -93,6 +88,12 @@ export default {
         }
       })
       return url
+    }
+  },
+  methods: {
+    setAuthor() {
+      this.$store.commit('author/setAuthor', this.trend.author)
+      this.$router.push(`/author/${this.trend.meta.author_link}`)
     }
   }
 }
