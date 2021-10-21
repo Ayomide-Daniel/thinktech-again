@@ -2,7 +2,8 @@
   <div>
     <v-app id="app-wrapper">
       <v-main>
-        <NavbarComponent /><SubscribeComponent />
+        <NavbarComponent />
+        <!-- <SubscribeComponent /> -->
         <v-container id="app-container">
           <router-view></router-view
         ></v-container>
@@ -12,13 +13,13 @@
 </template>
 <script>
 import NavbarComponent from '~/components/includes/NavbarComponent'
-import SubscribeComponent from '~/components/includes/SubscribeComponent'
+// import SubscribeComponent from '~/components/includes/SubscribeComponent'
 export default {
   name: 'Default',
   components: {
-    NavbarComponent,
-    SubscribeComponent,
-  },
+    NavbarComponent
+    // SubscribeComponent
+  }
 }
 </script>
 

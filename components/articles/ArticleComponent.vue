@@ -161,6 +161,7 @@ export default {
   methods: {
     async setAuthor(author, link) {
       await this.$store.commit('author/setAuthor', author)
+      Analytics.updateVisits({ article_id: this.article.id })
       this.$router.push(link)
     },
     getArticle(title) {

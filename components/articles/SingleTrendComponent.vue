@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import Analytics from '~/assets/js/api/Analytics'
 export default {
   name: 'SingleTrendComponent',
   props: ['article'],
@@ -93,6 +94,7 @@ export default {
   methods: {
     setAuthor() {
       this.$store.commit('author/setAuthor', this.trend.author)
+      Analytics.updateVisits({ article_id: this.article.id })
       this.$router.push(`/author/${this.trend.meta.author_link}`)
     }
   }
