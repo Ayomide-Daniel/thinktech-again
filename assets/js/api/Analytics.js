@@ -7,7 +7,7 @@ export default {
     return Api.post('/analytics/update-views', formData)
   },
   async updateVisits(formData) {
-    await Csrf.postCookie()
+    await Csrf.getCookie()
     return Api.get('/analytics/update-visits', formData)
   }
 }

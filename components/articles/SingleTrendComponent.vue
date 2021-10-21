@@ -93,10 +93,9 @@ export default {
   },
   methods: {
     setAuthor() {
-      Analytics.updateVisits({ article_id: this.article.id }).then(() => {
-        this.$store.commit('author/setAuthor', this.trend.author)
-        this.$router.push(`/author/${this.trend.meta.author_link}`)
-      })
+      Analytics.updateVisits({ article_id: this.article.id })
+      this.$store.commit('author/setAuthor', this.trend.author)
+      this.$router.push(`/author/${this.trend.meta.author_link}`)
     }
   }
 }
